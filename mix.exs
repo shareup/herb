@@ -8,8 +8,19 @@ defmodule Herb.MixProject do
       elixir: "~> 1.10",
       start_permanent: Mix.env() == :prod,
       deps: deps(),
-      escript: escript()
+      escript: escript(),
+      description: description(),
+      package: [
+        licenses: ["MIT"],
+        links: %{
+          "GitHub" => "https://github.com/shareup/herb"
+        }
+      ]
     ]
+  end
+
+  def description do
+    "Execute .exs scripts with the ability to depend on other mix projects (including hex packages) without setting up a project yourself."
   end
 
   def escript do
@@ -23,6 +34,8 @@ defmodule Herb.MixProject do
   end
 
   defp deps do
-    []
+    [
+      {:ex_doc, ">= 0.0.0", only: :dev, runtime: false}
+    ]
   end
 end
